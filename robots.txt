@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /backup_original/
+Disallow: /.vscode/
+Disallow: /assets/
+Disallow: /frames/
+Disallow: /images/
+Disallow: /*.bat$
+Disallow: /*.py$
+Disallow: /*.mp4$
+Disallow: /*.jpg$
+Disallow: /*.webp$

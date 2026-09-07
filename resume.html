@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamdani Mohamed Amine — Resume</title>
+  <meta name="description" content="Resume of Hamdani Mohamed Amine, Software Engineer." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; upgrade-insecure-requests" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --page-bg: #ffffff;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-muted: #777777;
+      --accent: #d4a026;
+      --accent-dark: #b8891e;
+      --accent-bg: #fdf6e6;
+      --border: #e5e5e5;
+      --border-light: #f0f0f0;
+      --section-line: #d4a026;
+      --tag-bg: #f5f5f5;
+      --tag-text: #333;
+    }
+
+    html { font-size: 14px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #04060a;
+      background-image:
+        radial-gradient(ellipse 60vw 80vh at 0% 50%, rgba(255, 122, 26, 0.28) 0%, rgba(255, 122, 26, 0.08) 45%, transparent 70%),
+        radial-gradient(ellipse 60vw 80vh at 100% 50%, rgba(31, 130, 255, 0.28) 0%, rgba(31, 130, 255, 0.08) 45%, transparent 70%),
+        radial-gradient(circle at 50% 30%, rgba(15, 23, 42, 0.5) 0%, transparent 60%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── Page Container (A4 aspect) ──────────────── */
+    .resume-page {
+      max-width: 800px;
+      margin: 32px auto;
+      padding: 48px 52px;
+      background: var(--page-bg);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0; /* Suppresses browser URL, title, date, and page numbers */
+    }
+
+    @media print {
+      html, body {
+        background: #ffffff !important;
+        background-image: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .resume-page {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 14mm 16mm !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        box-decoration-break: clone !important;
+        -webkit-box-decoration-break: clone !important;
+      }
+      .no-print,
+      .no-print *,
+      .hide-on-print,
+      .hide-on-print * {
+        display: none !important;
+      }
+      .resume-section {
+        margin-top: 20px !important;
+        break-inside: auto !important;
+        page-break-inside: auto !important;
+      }
+      .section-title {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+      .project-item,
+      .exp-block,
+      .edu-block,
+      .skills-grid > div,
+      .languages-row,
+      .lang-item,
+      .resume-header {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      .project-name,
+      .exp-header,
+      .edu-header,
+      .skill-category-title {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+      .exp-bullets li {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+    }
+
+    /* ─── Page Break Rules (Print & PDF Engine) ──── */
+    .project-item,
+    .exp-block,
+    .edu-block,
+    .skills-grid > div,
+    .languages-row,
+    .lang-item,
+    .resume-header {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .section-title,
+    .project-name,
+    .exp-header,
+    .edu-header,
+    .skill-category-title {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    .exp-bullets li {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    /* ─── Header / Name Block ─────────────────────── */
+    .resume-header {
+      text-align: center;
+      margin-bottom: 10px;
+      padding-bottom: 18px;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .resume-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .resume-title {
+      font-size: .95rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: .8px;
+    }
+
+    /* ─── Contact Info Row ─────────────────────────── */
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 12px;
+      font-size: .82rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-item svg { flex-shrink: 0; color: var(--accent); }
+
+    .contact-item a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+    /* ─── Section Styling ─────────────────────────── */
+    .resume-section {
+      margin-top: 24px;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-primary);
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--section-line);
+      margin-bottom: 12px;
+    }
+
+    /* ─── About ────────────────────────────────────── */
+    .about-text {
+      font-size: .88rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── Education Blocks ─────────────────────────── */
+    .edu-block {
+      margin-bottom: 14px;
+    }
+
+    .edu-block:last-child { margin-bottom: 0; }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .edu-institution {
+      font-size: .82rem;
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .edu-dates {
+      font-size: .78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .edu-degree {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 2px;
+    }
+
+    .edu-desc {
+      font-size: .82rem;
+      color: var(--text-secondary);
+      margin-top: 3px;
+      line-height: 1.55;
+    }
+
+    /* ─── Experience Blocks ────────────────────────── */
+    .exp-block {
+      margin-bottom: 14px;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .exp-company {
+      font-size: .82rem;
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .exp-dates {
+      font-size: .78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .exp-role {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 2px;
+    }
+
+    .exp-bullets {
+      margin-top: 6px;
+      padding-left: 18px;
+      list-style: disc;
+    }
+
+    .exp-bullets li {
+      font-size: .82rem;
+      color: var(--text-secondary);
+      margin-bottom: 3px;
+      line-height: 1.55;
+    }
+
+    /* ─── Skills Grid ──────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px 24px;
+    }
+
+    .skill-category-title {
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+      margin-top: 4px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .skill-tag {
+      font-size: .75rem;
+      padding: 3px 9px;
+      background: var(--tag-bg);
+      border-radius: 3px;
+      color: var(--tag-text);
+      font-weight: 500;
+    }
+
+    /* ─── Languages Row ────────────────────────────── */
+    .languages-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .lang-item {
+      font-size: .85rem;
+      color: var(--text-secondary);
+    }
+
+    .lang-item strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .lang-note {
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── Projects ─────────────────────────────────── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .project-item {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .project-name {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .project-name a {
+      color: var(--accent-dark);
+      text-decoration: none;
+    }
+
+    .project-name a:hover { text-decoration: underline; }
+
+    .project-desc {
+      font-size: .82rem;
+      color: var(--text-secondary);
+      margin-top: 1px;
+      line-height: 1.55;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .project-tech .skill-tag {
+      font-size: .7rem;
+      padding: 2px 7px;
+    }
+
+    /* ─── Action Dock (Print & Save as PDF) ────────── */
+    .action-dock {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+      background: rgba(10, 14, 22, 0.85);
+      padding: 6px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: .84rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+    }
+
+    .btn-pdf {
+      background: linear-gradient(135deg, #FF7A1A, #FF9238);
+      color: #ffffff;
+      box-shadow: 0 2px 14px rgba(255, 122, 26, 0.35);
+    }
+
+    .btn-pdf:hover {
+      background: linear-gradient(135deg, #e56a12, #f58428);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 122, 26, 0.5);
+    }
+
+    .btn-print {
+      background: rgba(255, 255, 255, 0.08);
+      color: #f0f4f8;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .btn-print:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      border-color: rgba(31, 130, 255, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(31, 130, 255, 0.25);
+    }
+
+    .spin-icon {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ─── Back Link ────────────────────────────────── */
+    .back-link {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem;
+      font-weight: 600;
+      color: rgba(240, 244, 248, 0.85);
+      text-decoration: none;
+      padding: 8px 16px;
+      background: rgba(10, 14, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: color .2s, border-color .2s, transform .2s, box-shadow .2s;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-link:hover {
+      color: #FF9238;
+      border-color: rgba(255, 122, 26, 0.45);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 122, 26, 0.25);
+    }
+
+    /* ─── Responsive ───────────────────────────────── */
+    @media (max-width: 640px) {
+      .resume-page { padding: 28px 20px; margin: 12px; }
+      .resume-name { font-size: 1.6rem; }
+      .contact-row { gap: 10px; font-size: .76rem; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Back to Portfolio -->
+  <a href="index.html" class="back-link no-print" aria-label="Back to portfolio">
+    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+    </svg>
+    Back to Portfolio
+  </a>
+
+  <!-- Floating Action Dock (Save as PDF & Print) -->
+  <div class="action-dock no-print">
+    <button class="action-btn btn-pdf" id="save-pdf-btn" type="button" aria-label="Save resume as PDF">
+      <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span>Save as PDF</span>
+    </button>
+    <button class="action-btn btn-print" id="print-resume-btn" type="button" aria-label="Print resume">
+      <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      <span>Print</span>
+    </button>
+  </div>
+
+  <div class="resume-page">
+    <!-- ═══ HEADER ═══ -->
+    <header class="resume-header">
+      <h1 class="resume-name">Hamdani Mohamed Amine</h1>
+      <p class="resume-title">Software Engineer</p>
+
+      <div class="contact-row">
+        <div class="contact-item">
+          <div class="contact-link">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>+213(0551466274)</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <a href="mailto:mohamed.amine.hamdani.dev@gmail.com" id="email-contact-link" class="contact-link" title="Email">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span>mohamed.amine.hamdani.dev@gmail.com</span>
+          </a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-link">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Chlef, Algeria</span>
+          </div>
+        </div>
+        <div class="contact-item hide-on-print">
+          <a href="https://www.linkedin.com/in/hamdani-mohamed-amine-4a50792a7" target="_blank" rel="noopener noreferrer" class="contact-link" title="LinkedIn">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+        <div class="contact-item hide-on-print">
+          <a href="https://github.com/21illusion" target="_blank" rel="noopener noreferrer" class="contact-link" title="GitHub">
+            <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>github.com/21illusion</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ ABOUT ME ═══ -->
+    <section class="resume-section">
+      <h2 class="section-title">About Me</h2>
+      <p class="about-text">
+        Software Engineer with a Master's degree and hands-on industry experience bridging software engineering with real-world industrial operations. Skilled in engineering high-performance desktop architectures, deep learning computer vision pipelines, and full-stack software solutions. Proven ability to independently conceive and deploy production applications that digitize and streamline critical business processes. Open for full-time, contract, and remote opportunities.
+      </p>
+    </section>
+
+    <!-- ═══ EDUCATION ═══ -->
+    <section class="resume-section">
+      <h2 class="section-title">Education</h2>
+
+      <div class="edu-block">
+        <div class="edu-header">
+          <span class="edu-institution">Hassiba Ben Bouali University • Ouled Fares, Algeria</span>
+          <span class="edu-dates">2023 — 2025</span>
+        </div>
+        <p class="edu-degree">Master's in Software Engineering</p>
+        <p class="edu-desc">Advanced software architectures, distributed systems, deep learning computer vision, database engineering, and applied project design.</p>
+      </div>
+
+      <div class="edu-block">
+        <div class="edu-header">
+          <span class="edu-institution">Hassiba Ben Bouali University • Ouled Fares, Algeria</span>
+          <span class="edu-dates">2020 — 2023</span>
+        </div>
+        <p class="edu-degree">Licence Degree in Software Engineering</p>
+        <p class="edu-desc">Core computer science foundations: object-oriented programming, data structures &amp; algorithms, software lifecycles, and relational database design.</p>
+      </div>
+
+      <div class="edu-block">
+        <div class="edu-header">
+          <span class="edu-institution">Vocational Training &amp; Apprenticeship Center • Chlef, Algeria</span>
+          <span class="edu-dates">2026</span>
+        </div>
+        <p class="edu-degree">Certificate in Automotive Electrical Systems</p>
+        <p class="edu-desc">Applied mastery of automotive electrical schematics, electronic diagnostics, alternators, starters, central locking, and alarm infrastructures.</p>
+      </div>
+    </section>
+
+    <!-- ═══ WORK EXPERIENCE ═══ -->
+    <section class="resume-section">
+      <h2 class="section-title">Work Experience</h2>
+
+      <div class="exp-block">
+        <div class="exp-header">
+          <span class="exp-company">DAEWOO TRUCKS (SARL PENG PU ALGERIE) • Algeria</span>
+          <span class="exp-dates">2025 — 2026</span>
+        </div>
+        <p class="exp-role">Technical Inspection &amp; Quality Control Specialist</p>
+        <ul class="exp-bullets">
+          <li>Executed systematic quality control assessments across mechanical, electrical, and electronic modules on <strong>400+ commercial trucks</strong>, ensuring strict manufacturing compliance.</li>
+          <li>Operated precision fiber laser engraving stations for chassis VIN numbers and official identification plates under strict industrial standards.</li>
+          <li>Independently conceived and deployed <strong>"Truck Inspection Pro v2"</strong> — a high-security Electron desktop app with AES-256 encrypted storage — standardizing inspections and eliminating manual paperwork (<strong>100% digitized</strong>).</li>
+          <li>Created the company's official 3D CAD mechanical sequence and animated logo introduction for professional technical presentations.</li>
+          <li>Achieved <strong>&lt; 35 min</strong> average diagnostic time and <strong>98% QC satisfaction</strong> rating.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ KEY PROJECTS ═══ -->
+    <section class="resume-section">
+      <h2 class="section-title">Key Projects</h2>
+
+      <div class="projects-list">
+        <div class="project-item">
+          <p class="project-name">Truck Inspection Pro v2<span class="hide-on-print"> — <a href="https://github.com/21illusion" target="_blank" rel="noopener noreferrer">GitHub</a></span></p>
+          <p class="project-desc">Enterprise-grade Electron desktop app with AES-256 encrypted SQLite storage, automated PDF reporting, and multi-checkpoint inspection workflows for commercial vehicle manufacturing.</p>
+          <div class="project-tech">
+            <span class="skill-tag">Electron</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">AES-256</span>
+            <span class="skill-tag">PDF Generation</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <p class="project-name">YOLOv8 Accuracy Improvement for Object Detection</p>
+          <p class="project-desc">Deep learning computer vision pipeline leveraging YOLOv8 with inference optimization via TensorRT and OpenVINO for real-time object detection.</p>
+          <div class="project-tech">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">YOLOv8</span>
+            <span class="skill-tag">TensorRT</span>
+            <span class="skill-tag">OpenVINO</span>
+            <span class="skill-tag">OpenCV</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <p class="project-name">E-Commerce Website<span class="hide-on-print"> — <a href="https://github.com/21illusion" target="_blank" rel="noopener noreferrer">GitHub</a></span></p>
+          <p class="project-desc">Full-stack e-commerce platform with user authentication, product catalog, shopping cart, and admin dashboard.</p>
+          <div class="project-tech">
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <p class="project-name">Supermarket POS System<span class="hide-on-print"> — <a href="https://github.com/21illusion/upermarket-Management-System-Point-of-Sale---POS-" target="_blank" rel="noopener noreferrer">GitHub</a></span></p>
+          <p class="project-desc">Java Swing desktop application for supermarket inventory, sales transactions, seller accounts, and admin controls with dual SQLite/MySQL support via JDBC.</p>
+          <div class="project-tech">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Swing</span>
+            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">JDBC</span>
+          </div>
+        </div>
+
+        <div class="project-item">
+          <p class="project-name">PENG PU 3D CAD Mechanical Animation</p>
+          <p class="project-desc">Professional 3D mechanical sequence and animated logo intro created in Blender for the company's technical presentations.</p>
+          <div class="project-tech">
+            <span class="skill-tag">Blender</span>
+            <span class="skill-tag">After Effects</span>
+            <span class="skill-tag">DaVinci Resolve</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SKILLS ═══ -->
+    <section class="resume-section">
+      <h2 class="section-title">Skills</h2>
+
+      <div class="skills-grid">
+        <div>
+          <p class="skill-category-title">Programming</p>
+          <div class="skill-list">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">C/C++</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="skill-category-title">AI &amp; Computer Vision</p>
+          <div class="skill-list">
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">YOLOv8</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">TensorRT</span>
+            <span class="skill-tag">OpenVINO</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="skill-category-title">Desktop &amp; Systems</p>
+          <div class="skill-list">
+            <span class="skill-tag">Electron</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">MySQL</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="skill-category-title">Creative</p>
+          <div class="skill-list">
+            <span class="skill-tag">Blender</span>
+            <span class="skill-tag">After Effects</span>
+            <span class="skill-tag">Illustrator</span>
+            <span class="skill-tag">DaVinci Resolve</span>
+            <span class="skill-tag">Figma</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="skill-category-title">Industrial</p>
+          <div class="skill-list">
+            <span class="skill-tag">Quality Control</span>
+            <span class="skill-tag">VIN Laser Marking</span>
+            <span class="skill-tag">EZCAD2</span>
+            <span class="skill-tag">Vehicle Diagnostics</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="skill-category-title">Currently Learning</p>
+          <div class="skill-list">
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">C#/.NET</span>
+            <span class="skill-tag">Go</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ LANGUAGES ═══ -->
+    <section class="resume-section">
+      <h2 class="section-title">Languages</h2>
+      <div class="languages-row">
+        <div class="lang-item">
+          <strong>Arabic</strong> — Native
+        </div>
+        <div class="lang-item">
+          <strong>English</strong> — Professional Working Proficiency
+          <span class="lang-note">(Duolingo Score: 128)</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- html2pdf bundle for direct PDF download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="browser-protection.js"></script>
+  <script src="resume.js"></script>
+</body>
+</html>

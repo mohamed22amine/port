@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMINE — software engineer</title>
+  <meta name="description" content="Portfolio of AMINE, software engineer." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; connect-src 'self'; upgrade-insecure-requests" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Cinematic Intro Loader -->
+  <div id="site-loader" class="site-loader">
+    <div class="loader-content">
+      <div class="loader-brand-row">
+        <span class="loader-initial">A</span>
+        <span class="loader-brand-text">AMINE</span>
+      </div>
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill" id="loader-bar"></div>
+      </div>
+      <div class="loader-status">
+        <span class="loader-text">LOADING</span>
+        <span class="loader-percent" id="loader-percent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed Background Video Scene -->
+  <div class="video-scene" aria-hidden="true">
+    <canvas id="background-canvas"></canvas>
+    <div class="video-vignette"></div>
+    <div class="ambient-light-left"></div>
+    <div class="ambient-light-right"></div>
+    <div class="ownership-mark">HAMDANI MOHAMED AMINE <span>/</span> PORTFOLIO</div>
+  </div>
+
+  <!-- Header Navigation (Split Layout) -->
+  <header class="site-header">
+    <div class="header-left">
+      <a href="#hero" class="brand-mark" aria-label="AMINE Homepage">
+        <span class="brand-initial">A</span>
+        <span class="brand-text">AMINE</span>
+      </a>
+    </div>
+
+    <div class="header-right">
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="#hero" class="nav-link active" id="nav-hero"><span class="nav-num">01</span> HOME</a>
+        <a href="#studies" class="nav-link" id="nav-studies"><span class="nav-num">02</span> STUDIES</a>
+        <a href="#experience" class="nav-link" id="nav-experience"><span class="nav-num">03</span> EXPERIENCE</a>
+        <a href="#projects" class="nav-link" id="nav-projects"><span class="nav-num">04</span> WORKS</a>
+        <a href="#skills" class="nav-link" id="nav-skills"><span class="nav-num">05</span> SKILLS</a>
+        <a href="#contact" class="nav-link" id="nav-contact"><span class="nav-num">06</span> CONTACT</a>
+      </nav>
+      <a href="#contact" class="talk-btn">LET'S TALK</a>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer Overlay -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="brand-mark-mobile">
+          <span class="brand-initial">A</span>
+          <span class="brand-text">AMINE</span>
+        </div>
+        <button class="mobile-nav-close" id="mobile-nav-close" type="button" aria-label="Close navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="mobile-nav-links" aria-label="Mobile navigation links">
+        <a href="#hero" class="mobile-nav-link active" data-section="hero">
+          <span class="mobile-nav-num">01</span>
+          <span class="mobile-nav-label">HOME</span>
+          <svg class="mobile-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <a href="#studies" class="mobile-nav-link" data-section="studies">
+          <span class="mobile-nav-num">02</span>
+          <span class="mobile-nav-label">STUDIES</span>
+          <svg class="mobile-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <a href="#experience" class="mobile-nav-link" data-section="experience">
+          <span class="mobile-nav-num">03</span>
+          <span class="mobile-nav-label">EXPERIENCE</span>
+          <svg class="mobile-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <a href="#projects" class="mobile-nav-link" data-section="projects">
+          <span class="mobile-nav-num">04</span>
+          <span class="mobile-nav-label">WORKS</span>
+          <svg class="mobile-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <a href="#skills" class="mobile-nav-link" data-section="skills">
+          <span class="mobile-nav-num">05</span>
+          <span class="mobile-nav-label">SKILLS</span>
+          <svg class="mobile-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+        <a href="#contact" class="mobile-nav-link" data-section="contact">
+          <span class="mobile-nav-num">06</span>
+          <span class="mobile-nav-label">CONTACT</span>
+          <svg class="mobile-nav-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </a>
+      </nav>
+
+      <div class="mobile-nav-footer">
+        <div class="mobile-nav-actions">
+          <a href="#contact" class="mobile-btn-talk" id="mobile-drawer-talk">
+            <span>LET'S TALK</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="resume.html" target="_blank" rel="noopener noreferrer" class="mobile-btn-resume">
+            <span>VIEW RESUME</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </a>
+        </div>
+        <div class="mobile-nav-socials">
+          <a href="https://github.com/21illusion" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/hamdani-mohamed-amine-4a50792a7" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="mailto:mohamed.amine.hamdani.dev@gmail.com" aria-label="Send Email">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Shell (Split Composition) -->
+  <main class="page-shell">
+
+    <!-- Section 1: Hero -->
+    <section id="hero" class="split-section">
+      <!-- Left Side: Heading, Bio, CTAs, Timeline Preview, Socials -->
+      <div class="split-left">
+        <div class="hero-status-pill">
+          <span class="pulse-dot-amber"></span>
+          <span class="hero-status-pill-text">SOFTWARE ENGINEER</span>
+        </div>
+
+        <h1 class="hero-title">
+          Hamdani <span class="hero-name-accent">Mohamed Amine</span>
+        </h1>
+
+        <p class="hero-description">
+          Engineering high-performance desktop architectures, deep learning computer vision pipelines, and full-stack software solutions with production-grade precision.
+        </p>
+
+        <div class="cta-row">
+          <a href="#projects" class="btn-amber primary-cta">
+            <span>EXPLORE WORK</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-amber secondary-cta">
+            <span>VIEW RESUME</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="mini-timeline-left">
+          <div class="timeline-tag-row">
+            <span class="timeline-tag">CURRENT STATUS</span>
+            <span class="status-live-beacon"></span>
+          </div>
+          <div class="timeline-item-hero">
+            <span class="dot-amber"></span>
+            <div class="timeline-hero-text">
+              <strong>Open for Recruitment</strong>
+              <span>Available for Full-time, Contract &amp; Remote Roles</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="socials-left" aria-label="Social links">
+          <a href="https://github.com/21illusion" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link-amber" title="GitHub Profile">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/hamdani-mohamed-amine-4a50792a7" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link-amber" title="LinkedIn Profile">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+          </a>
+          <a href="mailto:mohamed.amine.hamdani.dev@gmail.com" aria-label="Email" class="social-link-amber email-trigger-btn" title="mohamed.amine.hamdani.dev@gmail.com (Click to copy/open)">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Side: Availability, Stats, Quick Info, Skill Indicators, Nav Helper -->
+      <div class="split-right">
+        <div class="nav-helper-right">
+          <span class="section-indicator">01 / HOME</span>
+          <span class="scroll-prompt">SCROLL TO EXPLORE ↓</span>
+        </div>
+
+        <div class="availability-badge">
+          <span class="pulse-dot-blue"></span>
+          <div class="status-info">
+            <span class="status-title">STATUS</span>
+            <span class="status-value">AVAILABLE FOR NEW OPPORTUNITIES</span>
+          </div>
+        </div>
+
+        <div class="stats-grid-right">
+          <div class="stat-card">
+            <span class="stat-number">01</span>
+            <span class="stat-lbl">YEARS OF EXPERIENCE</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">05</span>
+            <span class="stat-lbl">CORE PROJECTS</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">2025</span>
+            <span class="stat-lbl">MASTER'S GRADUATED</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">02</span>
+            <span class="stat-lbl">LANGUAGES SPOKEN</span>
+          </div>
+        </div>
+
+        <div class="quick-info-right">
+          <div class="info-row">
+            <span class="info-label">LOCATION</span>
+            <span class="info-value">Chlef, Algeria</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">SPECIALTY</span>
+            <span class="info-value">Software &amp; Systems</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">TIMEZONE</span>
+            <span class="info-value">UTC+1 (CET)</span>
+          </div>
+        </div>
+
+        <div class="skill-summary-right">
+          <div class="skill-label-row">
+            <span>SYSTEMS &amp; COMPUTER VISION</span>
+            <span>96%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" style="width: 96%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Studies Journey -->
+    <section id="studies" class="split-section">
+      <!-- Left Side: Section Title, Bio & First Half of Timeline -->
+      <div class="split-left">
+        <div class="hero-status-pill">
+          <span class="pulse-dot-amber"></span>
+          <span class="hero-status-pill-text">02 / HIGHER EDUCATION &amp; SPECIALIZATION</span>
+        </div>
+        <h2 class="section-heading-amber">
+          Academic <span class="hero-name-accent">Foundations.</span>
+        </h2>
+        <p class="section-text-amber">
+          A progressive 5-year university formation in Software Engineering combined with specialized automotive electrical systems certification.
+        </p>
+
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+
+          <!-- Master's Degree (Top Academic Credential) -->
+          <div class="timeline-node active">
+            <div class="node-marker"></div>
+            <div class="node-content">
+              <div class="node-header-row">
+                <span class="node-year">2023 — 2025</span>
+                <span class="node-badge-amber">GRADUATE MASTER'S</span>
+              </div>
+              <h3 class="node-role">Master's in Software Engineering</h3>
+              <p class="node-company">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                Hassiba Ben Bouali University • Ouled Fares, Algeria
+              </p>
+              <p class="node-desc">Advanced software architectures, distributed systems, deep learning computer vision, database engineering, and applied project design.</p>
+              <div class="node-tags-row tags-amber">
+                <span>Software Architecture</span>
+                <span>Distributed Systems</span>
+                <span>Deep Learning</span>
+                <span>Databases</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Competency Certificate in Automotive Electrical -->
+          <div class="timeline-node">
+            <div class="node-marker"></div>
+            <div class="node-content">
+              <div class="node-header-row">
+                <span class="node-year">2026</span>
+                <span class="node-badge-amber">TECHNICAL SPECIALIZATION</span>
+              </div>
+              <h3 class="node-role">Certificate in Automotive Electrical Systems</h3>
+              <p class="node-company">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                Vocational Training &amp; Apprenticeship Center • Chlef, Algeria
+              </p>
+              <p class="node-desc">Applied mastery of automotive electrical schematics, electronic diagnostics, alternators, starters, central locking, and alarm infrastructures.</p>
+              <div class="node-tags-row tags-amber">
+                <span>Wiring Schematics</span>
+                <span>Electronic Diagnostics</span>
+                <span>ECU &amp; Starters</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bachelor's Degree -->
+          <div class="timeline-node">
+            <div class="node-marker"></div>
+            <div class="node-content">
+              <div class="node-header-row">
+                <span class="node-year">2020 — 2023</span>
+                <span class="node-badge-amber">UNDERGRADUATE DEGREE</span>
+              </div>
+              <h3 class="node-role">Licence Degree in Software Engineering</h3>
+              <p class="node-company">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                Hassiba Ben Bouali University • Ouled Fares, Algeria
+              </p>
+              <p class="node-desc">Core computer science foundations: object-oriented programming, data structures &amp; algorithms, software lifecycles, and relational database design.</p>
+              <div class="node-tags-row tags-amber">
+                <span>OOP &amp; Java</span>
+                <span>Data Structures</span>
+                <span>Relational Databases</span>
+                <span>Algorithms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Earlier Education & Highlights -->
+      <div class="split-right">
+        <div class="nav-helper-right">
+          <span class="section-indicator">02 / STUDIES</span>
+          <span class="scroll-prompt">EARLIER EDUCATION</span>
+        </div>
+
+        <div class="timeline-container timeline-container-blue">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-node">
+            <div class="node-marker"></div>
+            <div class="node-content">
+              <div class="node-header-row">
+                <span class="node-year">2020</span>
+                <span class="node-badge-blue">NATIONAL EXAM</span>
+              </div>
+              <h3 class="node-role">Baccalaureate — Scientific Stream</h3>
+              <p class="node-company">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Hashmawi Abdelkader High School • Oum Drou, Algeria
+              </p>
+              <p class="node-desc">Rigorous STEM track focusing on advanced mathematics, physics, and natural sciences.</p>
+              <div class="node-tags-row tags-blue">
+                <span>Advanced Mathematics</span>
+                <span>Physics &amp; Chemistry</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-node">
+            <div class="node-marker"></div>
+            <div class="node-content">
+              <div class="node-header-row">
+                <span class="node-year">2017</span>
+                <span class="node-badge-blue">MIDDLE SCHOOL (BEM)</span>
+              </div>
+              <h3 class="node-role">Middle School Certificate — Scientific</h3>
+              <p class="node-company">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Qasim Brothers Middle School • Oum Drou, Algeria
+              </p>
+              <div class="node-tags-row tags-blue">
+                <span>STEM Foundations</span>
+                <span>Sciences &amp; Math</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-node">
+            <div class="node-marker"></div>
+            <div class="node-content">
+              <div class="node-header-row">
+                <span class="node-year">2013</span>
+                <span class="node-badge-blue">PRIMARY EDUCATION</span>
+              </div>
+              <h3 class="node-role">Primary Education Certificate</h3>
+              <p class="node-company">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Nasseri Jeloul Elementary School • Oum Drou, Algeria
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Experience Journey -->
+    <!-- Section 3: Professional Experience & Industry Impact -->
+    <section id="experience" class="split-section experience-section">
+      <!-- Left Side: Section Title, Timeline & Industrial Achievements -->
+      <div class="split-left">
+        <div class="hero-status-pill">
+          <span class="pulse-dot-amber"></span>
+          <span class="hero-status-pill-text">03 / INDUSTRY EXPERIENCE &amp; OPERATIONS</span>
+        </div>
+        <h2 class="section-heading-amber">Engineering <span class="hero-name-accent">in Production.</span></h2>
+        <p class="section-text-amber">
+          Bridging software engineering, precision automation, and quality control inside commercial vehicle manufacturing pipelines and digital fleet operations.
+        </p>
+
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-node active">
+            <div class="node-marker"></div>
+            <div class="node-content experience-primary-card">
+              <div class="node-header-row">
+                <span class="node-year">2025 — 2026</span>
+                <span class="node-badge-amber">COMMERCIAL MANUFACTURING ROLE</span>
+              </div>
+
+              <h3 class="node-role">Technical Inspection &amp; Quality Control Specialist</h3>
+              <p class="node-company">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                DAEWOO TRUCKS (SARL PENG PU ALGERIE) • Algeria
+              </p>
+
+              <p class="node-desc">
+                Combined computer science with hands-on industrial operations to inspect vehicle assemblies, operate precision laser marking systems, and proactively engineer in-house software infrastructure that eliminated paper bottlenecks.
+              </p>
+
+              <!-- Key Engineering Milestones & Contributions -->
+              <div class="exp-bullet-list">
+                <div class="exp-bullet-item">
+                  <div class="exp-bullet-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <div class="exp-bullet-text">
+                    <strong>Vehicle Diagnostic &amp; Quality Inspections:</strong> Executed systematic quality control assessments across mechanical, electrical, and electronic modules ensuring strict manufacturing compliance.
+                  </div>
+                </div>
+
+                <div class="exp-bullet-item">
+                  <div class="exp-bullet-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <div class="exp-bullet-text">
+                    <strong>Fiber Laser VIN Marking Operations:</strong> Handled precision fiber laser engraving stations for chassis VIN numbers and official identification plates under strict industrial standards.
+                  </div>
+                </div>
+
+                <div class="exp-bullet-item">
+                  <div class="exp-bullet-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <div class="exp-bullet-text">
+                    <strong>Software Innovation (Truck Inspection Pro v2):</strong> Independently conceived and deployed a high-security Electron desktop app with AES-256 encrypted storage, standardizing inspections and eliminating manual paperwork.
+                  </div>
+                </div>
+
+                <div class="exp-bullet-item">
+                  <div class="exp-bullet-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                  <div class="exp-bullet-text">
+                    <strong>Mechanical CAD Motion Animation:</strong> Created the company's official 3D CAD mechanical sequence and animated logo introduction for professional technical presentations.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Skill Badges -->
+              <div class="node-tags-row tags-amber">
+                <span>Quality Control &amp; Compliance</span>
+                <span>Truck Inspection Pro v2</span>
+                <span>VIN Laser Marking</span>
+                <span>Vehicle Diagnostics</span>
+                <span>AES-256 Security</span>
+                <span>Process Digitization</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Navigation Helper, Accolades & Recommendation Card -->
+      <div class="split-right">
+        <div class="nav-helper-right">
+          <span class="section-indicator">03 / EXPERIENCE</span>
+        </div>
+
+        <!-- Operational Metrics & Recognitions -->
+        <div class="accolades-box-right exp-metrics-card">
+          <div class="exp-metrics-header">
+            <span class="box-title-blue">OPERATIONAL METRICS &amp; RECOGNITIONS</span>
+            <span class="exp-verified-chip"><span class="pulse-dot-blue"></span>VERIFIED</span>
+          </div>
+
+          <div class="exp-kpi-grid">
+            <div class="exp-kpi-item">
+              <span class="exp-kpi-val">400+</span>
+              <span class="exp-kpi-lbl">Trucks Inspected</span>
+            </div>
+            <div class="exp-kpi-item">
+              <span class="exp-kpi-val">&lt; 35m</span>
+              <span class="exp-kpi-lbl">Diagnostic Time</span>
+            </div>
+            <div class="exp-kpi-item">
+              <span class="exp-kpi-val">100%</span>
+              <span class="exp-kpi-lbl">Digitized App</span>
+            </div>
+          </div>
+
+          <ul class="accolade-list">
+            <li>
+              <span class="acc-title">System Diagnostics Quality</span>
+              <span class="acc-count">Excellent Rating</span>
+            </li>
+            <li>
+              <span class="acc-title">Defect Reporting &amp; QC KPI</span>
+              <span class="acc-count">98% Satisfied</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Recommendation Letter Card -->
+        <div class="recommendation-card" id="rec-letter-card">
+          <div class="rec-card-header">
+            <div class="rec-header-left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span class="box-title-blue">LETTER OF RECOMMENDATION</span>
+            </div>
+            <span class="rec-verified-pill">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              OFFICIALLY VERIFIED
+            </span>
+          </div>
+
+          <!-- Executive Quote Callout from the letter -->
+          <div class="rec-quote-banner">
+            <p class="rec-quote-text">
+              &ldquo;What particularly distinguished Mr. HAMDANI was his ability to combine his software engineering background with practical industrial operations... I recommend him without reservation.&rdquo;
+            </p>
+            <span class="rec-quote-author">— BENNADJI Mohamed • SARL PENG PU ALGERIE</span>
+          </div>
+
+          <div class="rec-letter-body">
+            <div class="rec-letter-preview" id="open-letter-modal" role="button" tabindex="0" aria-label="View full recommendation letter in zoomable high resolution">
+              <img src="recommendation letter.jpg" alt="Letter of Recommendation from BENNADJI Mohamed, SARL PENG PU Algerie" class="rec-letter-thumb protected-media" loading="lazy" decoding="async" draggable="false">
+              <div class="rec-letter-overlay">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                <span>Click to Zoom</span>
+              </div>
+            </div>
+
+            <div class="rec-letter-details">
+              <div class="rec-author">
+                <span class="rec-author-name">BENNADJI Mohamed</span>
+                <span class="rec-author-role">SARL PENG PU Algerie (Daewoo Trucks)</span>
+              </div>
+
+              <div class="rec-highlights">
+                <div class="rec-highlight-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Exemplary responsibility, discipline &amp; QC diligence</span>
+                </div>
+                <div class="rec-highlight-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Engineered custom Truck Inspection software</span>
+                </div>
+                <div class="rec-highlight-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Produced 3D mechanical animation &amp; logo intro</span>
+                </div>
+                <div class="rec-highlight-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Recommended unconditionally for tech &amp; engineering roles</span>
+                </div>
+              </div>
+
+              <button class="rec-examine-btn" id="open-letter-btn" type="button" aria-label="Open recommendation letter in high resolution zoom viewer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                <span>Inspect Letter in High-Res Zoom</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Selected Works -->
+    <section id="projects" class="works-showcase-section">
+      <div class="works-header">
+        <div class="hero-status-pill">
+          <span class="pulse-dot-amber"></span>
+          <span class="hero-status-pill-text">04 / SELECTED WORKS &amp; SYSTEMS</span>
+        </div>
+        <h2 class="section-heading-amber">Featured <span class="hero-name-accent">Projects &amp; Systems.</span></h2>
+        <p class="section-text-muted">A dynamic showcase of production desktop applications, deep learning computer vision pipelines, and full-stack software.</p>
+      </div>
+
+      <div class="works-showcase-grid">
+        <!-- Left: Interactive Timeline -->
+        <div class="works-left-col">
+          <div class="works-timeline">
+            <div class="timeline-track"></div>
+            <div id="works-list-container">
+              <!-- Populated dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Center: Hidden — portrait shows through -->
+        <div class="works-center-col"></div>
+
+        <!-- Right: Premium Project Info Panel -->
+        <div class="works-right-col">
+          <div class="featured-project-card" id="featured-card">
+            <div class="featured-header">
+              <span class="featured-tag" id="featured-tag">01 / DESKTOP APP</span>
+              <h3 class="featured-title" id="featured-title">Supermarket POS System</h3>
+              <p class="featured-desc" id="featured-desc">A Java Swing desktop application for supermarket inventory, sales transactions, seller accounts, and admin controls with dual SQLite embedded and MySQL server support via JDBC.</p>
+            </div>
+
+            <div class="featured-demo">
+              <div class="demo-window-bar">
+                <div class="demo-window-dots">
+                  <span class="window-dot dot-red"></span>
+                  <span class="window-dot dot-yellow"></span>
+                  <span class="window-dot dot-green"></span>
+                </div>
+                <span class="demo-window-title" id="demo-window-title">POS_SYSTEM.MP4</span>
+                <span class="demo-live-badge"><span class="pulse-dot-blue"></span> MP4 DEMO</span>
+              </div>
+              <div class="video-wrapper">
+                <video id="featured-video" preload="metadata" playsinline loop muted controlslist="nodownload noremoteplayback" disablepictureinpicture>
+                  <source src="" type="video/mp4">
+                </video>
+                <img id="featured-image-fallback" src="" alt="Project Screenshot" class="protected-media" style="display: none;" loading="lazy" decoding="async" draggable="false">
+                <button class="play-overlay-btn" id="play-overlay" aria-label="Play Demo">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </button>
+                <button class="fullscreen-btn" id="fullscreen-btn" aria-label="Maximize video">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="featured-tech">
+              <span class="section-label">TECH &amp; ARCHITECTURE</span>
+              <div class="tech-badges-grid" id="featured-tech-grid">
+                <!-- Badges populated by JS -->
+              </div>
+            </div>
+
+            <div class="featured-repo" id="featured-repo-container">
+              <span class="section-label">SOURCE REPOSITORY</span>
+              <a href="https://github.com/21illusion/upermarket-Management-System-Point-of-Sale---POS-.git" class="repo-link-card" id="featured-repo-link" target="_blank" rel="noopener noreferrer">
+                <svg class="repo-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span class="repo-url" id="featured-repo-text">github.com/21illusion/upermarket-Management-System-Point-of-Sale---POS-</span>
+                <svg class="external-icon" width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="featured-navigation">
+              <button class="nav-btn prev-btn" id="works-prev" aria-label="Previous">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+
+              <div class="nav-indicator">
+                <span id="nav-counter">01 / 05</span>
+                <span id="nav-title">POS System</span>
+                <div class="nav-pips" id="nav-pips">
+                  <!-- Pips rendered by JS -->
+                </div>
+              </div>
+
+              <button class="nav-btn next-btn" id="works-next" aria-label="Next">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Capabilities & Skills -->
+    <section id="skills" class="split-section skills-split-section">
+      <!-- Left Column: Section Header & HARD SKILLS Card -->
+      <div class="split-left skills-left-col">
+        <div class="skills-header-block">
+          <p class="section-eyebrow-amber">— MY SKILLS</p>
+          <h2 class="section-heading-amber">Technologies I work with<br>and the ones <span class="text-blue-accent">I'm learning.</span></h2>
+          <p class="section-text-amber">
+            A focused set of skills built through real projects, continuous learning and a passion for building impactful solutions.
+          </p>
+        </div>
+
+        <!-- HARD SKILLS CARD (Amber Key Light) -->
+        <div class="hard-skills-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon icon-amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <div class="skill-card-titles">
+              <span class="skill-card-title-amber">HARD SKILLS</span>
+              <span class="skill-card-subtitle">Technologies I've used / studied and can work with.</span>
+            </div>
+          </div>
+
+          <div class="hard-skills-blocks-container">
+            <!-- Row 1: Programming, AI & CV, Databases -->
+            <div class="hard-skills-row hard-skills-row-top">
+              <!-- Programming -->
+              <div class="sub-skill-box">
+                <div class="sub-skill-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                  <span>PROGRAMMING</span>
+                </div>
+                <div class="sub-skill-pills">
+                  <span class="skill-pill-amber">Python</span>
+                  <span class="skill-pill-amber">JavaScript</span>
+                  <span class="skill-pill-amber">SQL</span>
+                  <span class="skill-pill-amber">Java</span>
+                  <span class="skill-pill-amber">PHP</span>
+                  <span class="skill-pill-amber">C/C++</span>
+                </div>
+              </div>
+
+              <!-- AI & Computer Vision -->
+              <div class="sub-skill-box">
+                <div class="sub-skill-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                    <rect x="9" y="9" width="6" height="6"></rect>
+                    <line x1="9" y1="1" x2="9" y2="4"></line>
+                    <line x1="15" y1="1" x2="15" y2="4"></line>
+                    <line x1="9" y1="20" x2="9" y2="23"></line>
+                    <line x1="15" y1="20" x2="15" y2="23"></line>
+                    <line x1="20" y1="9" x2="23" y2="9"></line>
+                    <line x1="20" y1="14" x2="23" y2="14"></line>
+                    <line x1="1" y1="9" x2="4" y2="9"></line>
+                    <line x1="1" y1="14" x2="4" y2="14"></line>
+                  </svg>
+                  <span>AI &amp; COMPUTER VISION</span>
+                </div>
+                <div class="sub-skill-pills">
+                  <span class="skill-pill-amber">PyTorch</span>
+                  <span class="skill-pill-amber">YOLOv8</span>
+                  <span class="skill-pill-amber">OpenCV</span>
+                  <span class="skill-pill-amber">TensorRT</span>
+                  <span class="skill-pill-amber">OpenVINO</span>
+                  <span class="skill-pill-amber">Computer Vision</span>
+                  <span class="skill-pill-amber">Model Optimization</span>
+                  <span class="skill-pill-amber">Inference Optimization</span>
+                </div>
+              </div>
+
+              <!-- Databases -->
+              <div class="sub-skill-box">
+                <div class="sub-skill-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                  </svg>
+                  <span>DATABASES</span>
+                </div>
+                <div class="sub-skill-pills">
+                  <span class="skill-pill-amber">MySQL</span>
+                  <span class="skill-pill-amber">SQLite</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: Desktop & Systems, Creative & Production -->
+            <div class="hard-skills-row hard-skills-row-bottom">
+              <!-- Desktop & Systems -->
+              <div class="sub-skill-box">
+                <div class="sub-skill-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                  </svg>
+                  <span>DESKTOP &amp; SYSTEMS</span>
+                </div>
+                <div class="sub-skill-pills">
+                  <span class="skill-pill-amber">Electron</span>
+                  <span class="skill-pill-amber">Node.js</span>
+                </div>
+              </div>
+
+              <!-- Creative & Production -->
+              <div class="sub-skill-box">
+                <div class="sub-skill-label">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+                    <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+                    <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                    <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"></path>
+                  </svg>
+                  <span>CREATIVE &amp; PRODUCTION</span>
+                </div>
+                <div class="sub-skill-pills">
+                  <span class="skill-pill-amber">Blender</span>
+                  <span class="skill-pill-amber">After Effects</span>
+                  <span class="skill-pill-amber">Illustrator</span>
+                  <span class="skill-pill-amber">DaVinci Resolve</span>
+                  <span class="skill-pill-amber">EZCAD2</span>
+                  <span class="skill-pill-amber">Figma</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: SOFT SKILLS Card + CURRENTLY LEARNING Card -->
+      <div class="split-right skills-right-col">
+        <!-- SOFT SKILLS CARD (Blue Rim Light) -->
+        <div class="soft-skills-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon icon-blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="skill-card-titles">
+              <span class="skill-card-title-blue">SOFT SKILLS</span>
+              <span class="skill-card-subtitle">Mindset and habits that help me grow, solve problems and work better — alone or in a team.</span>
+            </div>
+          </div>
+
+          <div class="soft-skills-grid">
+            <div class="soft-skill-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="9" y1="18" x2="15" y2="18"></line>
+                <line x1="10" y1="22" x2="14" y2="22"></line>
+                <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+              </svg>
+              <span>Problem Solving</span>
+            </div>
+
+            <div class="soft-skill-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 3 21 3 21 8"></polyline>
+                <line x1="4" y1="20" x2="21" y2="3"></line>
+                <polyline points="21 16 21 21 16 21"></polyline>
+                <line x1="15" y1="15" x2="21" y2="21"></line>
+                <line x1="4" y1="4" x2="9" y2="9"></line>
+              </svg>
+              <span>Adaptability</span>
+            </div>
+
+            <div class="soft-skill-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              <span>Analytical Thinking</span>
+            </div>
+
+            <div class="soft-skill-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+              <span>Attention to Detail</span>
+            </div>
+
+            <div class="soft-skill-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Technical Troubleshooting</span>
+            </div>
+
+            <div class="soft-skill-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="18" r="3"></circle>
+                <circle cx="6" cy="6" r="3"></circle>
+                <circle cx="18" cy="6" r="3"></circle>
+                <line x1="6" y1="9" x2="6" y2="21"></line>
+                <path d="M6 15h9a3 3 0 0 0 3-3V9"></path>
+              </svg>
+              <span>Systematic Thinking</span>
+            </div>
+
+            <div class="soft-skill-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <span>Independent Learning</span>
+            </div>
+
+            <div class="soft-skill-item">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <span>Project Ownership</span>
+            </div>
+
+            <div class="soft-skill-item soft-skill-full">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+              <span>Continuous Improvement</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CURRENTLY LEARNING CARD (Blue Rim Light) -->
+        <div class="currently-learning-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon icon-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <div class="skill-card-titles">
+              <span class="skill-card-title-blue">CURRENTLY LEARNING</span>
+              <span class="skill-card-subtitle">Technologies I'm actively learning to expand my skills and future opportunities.</span>
+            </div>
+          </div>
+
+          <div class="learning-pills-wrap">
+            <span class="learning-pill">TypeScript</span>
+            <span class="learning-pill">PostgreSQL</span>
+            <span class="learning-pill">Redis</span>
+            <span class="learning-pill">MongoDB</span>
+            <span class="learning-pill">C#/.NET</span>
+            <span class="learning-pill">Docker</span>
+            <span class="learning-pill">Linux</span>
+            <span class="learning-pill">CI/CD</span>
+            <span class="learning-pill">Go</span>
+            <span class="learning-pill">Unity</span>
+            <span class="learning-pill">Unreal Engine</span>
+          </div>
+        </div>
+
+        <!-- LANGUAGES CARD (Blue Rim Light) -->
+        <div class="languages-card">
+          <div class="skill-card-header">
+            <div class="skill-card-icon icon-blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <div class="skill-card-titles">
+              <span class="skill-card-title-blue">LANGUAGES</span>
+              <span class="skill-card-subtitle">Communication proficiencies &amp; verified language certifications.</span>
+            </div>
+          </div>
+
+          <div class="languages-grid">
+            <!-- Arabic -->
+            <div class="language-item">
+              <div class="lang-top-row">
+                <span class="lang-name">Arabic</span>
+                <span class="lang-pill-level">Native</span>
+              </div>
+              <p class="lang-proficiency-desc">Native or bilingual proficiency</p>
+            </div>
+
+            <!-- English -->
+            <div class="language-item">
+              <div class="lang-top-row">
+                <span class="lang-name">English</span>
+                <span class="lang-pill-level">Professional</span>
+              </div>
+              <p class="lang-proficiency-desc">Professional working proficiency</p>
+
+              <div class="duolingo-cert-card">
+                <div class="duo-left">
+                  <span class="duo-badge">DUOLINGO</span>
+                  <span class="duo-score-text">Score <strong>128</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Contact & Inquiries -->
+    <section id="contact" class="split-section">
+      <!-- Left Side: Inquiries Prompt, Email Card & Interactive Socials -->
+      <div class="split-left">
+        <div class="hero-status-pill">
+          <span class="pulse-dot-amber"></span>
+          <span class="hero-status-pill-text">06 / INITIATE CONTACT</span>
+        </div>
+
+        <h2 class="section-heading-amber">
+          Let's build <span class="hero-name-accent">extraordinary</span> systems.
+        </h2>
+
+        <p class="section-text-amber">
+          Have a mission-critical project, software engineering role, or computer vision challenge? Open for recruitment, contract work, and technical collaborations.
+        </p>
+
+        <!-- Primary Connect Card -->
+        <div class="contact-dossier-card">
+          <div class="contact-card-top">
+            <span class="contact-card-label">DIRECT INQUIRY CHANNEL</span>
+            <span class="contact-live-pill"><span class="status-live-beacon"></span> ACTIVE</span>
+          </div>
+
+          <a href="mailto:mohamed.amine.hamdani.dev@gmail.com" class="contact-email-button email-trigger-btn" title="Click to email or copy address">
+            <div class="contact-email-inner">
+              <div class="contact-email-icon">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div class="contact-email-text">
+                <span class="contact-email-title">PRIMARY EMAIL</span>
+                <span class="contact-email-val">mohamed.amine.hamdani.dev@gmail.com</span>
+              </div>
+            </div>
+            <div class="contact-arrow-badge">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+
+          <div class="contact-quick-actions">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mohamed.amine.hamdani.dev@gmail.com" target="_blank" rel="noopener noreferrer" class="quick-action-pill">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              <span>Open in Gmail</span>
+            </a>
+            <button type="button" class="quick-action-pill email-trigger-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy Address</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Social Channels Showcase Cards -->
+        <div class="contact-social-row">
+          <a href="https://github.com/21illusion" target="_blank" rel="noopener noreferrer" class="contact-channel-card" title="Visit GitHub Profile">
+            <div class="channel-icon-wrap">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </div>
+            <div class="channel-info">
+              <span class="channel-platform">GITHUB</span>
+              <span class="channel-handle">21illusion</span>
+            </div>
+            <svg class="channel-arrow" width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <a href="https://www.linkedin.com/in/hamdani-mohamed-amine-4a50792a7" target="_blank" rel="noopener noreferrer" class="contact-channel-card" title="Connect on LinkedIn">
+            <div class="channel-icon-wrap">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </div>
+            <div class="channel-info">
+              <span class="channel-platform">LINKEDIN</span>
+              <span class="channel-handle">Hamdani Amine</span>
+            </div>
+            <svg class="channel-arrow" width="12" height="12" viewBox="0 0 14 14" fill="none">
+              <path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Side: Availability Dossier & Technical Communication Specs -->
+      <div class="split-right">
+        <div class="nav-helper-right">
+          <span class="section-indicator">06 / CONTACT TERMINAL</span>
+          <span class="scroll-prompt">COMMUNICATION SPECS</span>
+        </div>
+
+        <!-- Availability Details Card -->
+        <div class="availability-card-right">
+          <div class="card-header-blue">
+            <span class="pulse-dot-blue"></span>
+            <span class="card-title-blue">CURRENT AVAILABILITY</span>
+            <span class="avail-badge-open">OPEN TO OFFERS</span>
+          </div>
+          <p class="card-body-blue">
+            Open for full-time engineering positions, contract roles, and software consultancy. Immediate or planned availability.
+          </p>
+          <div class="avail-tags-row tags-blue">
+            <span>Full-Time</span>
+            <span>Contract</span>
+            <span>Remote Worldwide</span>
+            <span>Relocation Ready</span>
+          </div>
+        </div>
+
+        <!-- Technical Communication Specs -->
+        <div class="quick-info-right">
+          <div class="info-row">
+            <span class="info-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              DIRECT EMAIL
+            </span>
+            <a href="mailto:mohamed.amine.hamdani.dev@gmail.com" class="info-value email-trigger-btn" style="text-decoration: none; color: var(--blue-secondary);" title="Click to email or copy">mohamed.amine.hamdani.dev@gmail.com</a>
+          </div>
+          <div class="info-row">
+            <span class="info-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              LOCATION
+            </span>
+            <span class="info-value">Chlef, Algeria</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              TIMEZONE
+            </span>
+            <span class="info-value">UTC+1 (CET)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              WORK PREFERENCE
+            </span>
+            <span class="info-value">Remote / Hybrid / On-site</span>
+          </div>
+        </div>
+
+        <!-- Response Guarantee HUD -->
+        <div class="contact-sla-box">
+          <div class="skill-label-row">
+            <span class="sla-title">
+              <span class="sla-dot-blue"></span>
+              RAPID RESPONSE GUARANTEE
+            </span>
+            <span class="sla-metric">&lt; 24 HOURS</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" style="width: 100%;"></div>
+          </div>
+          <p class="sla-subtext">All verified business, recruitment, and project inquiries receive a direct response within 24 hours.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Recommendation Letter Lightbox Modal with Zoom / Maximize Controls -->
+  <div class="rec-letter-modal" id="rec-letter-modal" role="dialog" aria-modal="true" aria-label="Recommendation Letter Viewer">
+    <div class="rec-modal-backdrop" id="rec-modal-backdrop"></div>
+
+    <div class="rec-modal-container">
+      <!-- Modal Top Bar -->
+      <div class="rec-modal-header">
+        <div class="rec-modal-meta">
+          <div class="rec-modal-badge">
+            <span class="pulse-dot-blue"></span>
+            OFFICIAL ENDORSEMENT
+          </div>
+          <span class="rec-modal-title">Letter of Recommendation • SARL PENG PU Algérie</span>
+        </div>
+
+        <div class="rec-modal-actions">
+          <!-- Zoom Controls -->
+          <div class="rec-zoom-controls">
+            <button class="rec-ctrl-btn" id="rec-zoom-out" title="Zoom Out" aria-label="Zoom Out">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+            <span class="rec-zoom-level" id="rec-zoom-level">100%</span>
+            <button class="rec-ctrl-btn" id="rec-zoom-in" title="Zoom In" aria-label="Zoom In">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+            <button class="rec-ctrl-btn rec-fit-btn" id="rec-zoom-reset" title="Fit to Screen" aria-label="Fit to Screen">Fit</button>
+            <button class="rec-ctrl-btn" id="rec-maximize-btn" title="Toggle Fullscreen / Maximize" aria-label="Toggle Fullscreen">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path></svg>
+            </button>
+          </div>
+
+          <!-- Close Button -->
+          <button class="rec-modal-close" id="rec-modal-close" aria-label="Close modal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable & Zoomable Viewport -->
+      <div class="rec-modal-viewport" id="rec-modal-viewport">
+        <div class="rec-modal-zoom-wrapper" id="rec-zoom-wrapper">
+          <img src="recommendation letter.jpg" alt="Full recommendation letter from SARL PENG PU Algerie" class="rec-modal-image protected-media" id="rec-modal-image" loading="lazy" decoding="async" draggable="false">
+        </div>
+      </div>
+
+      <!-- Modal Footer Info -->
+      <div class="rec-modal-footer">
+        <span class="rec-footer-hint">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          Double-click or use + / - to zoom in to 160% / 220% • Drag or scroll to navigate text • Official seal &amp; signature verified
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP & Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+  <script src="browser-protection.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

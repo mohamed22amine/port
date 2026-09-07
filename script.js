@@ -575,6 +575,8 @@ const projectVideos = {
   truck: "4V5OfNxsQqE"
 };
 
+const youtubeThumbnailVersion = "2";
+
 const worksData = [
   {
     id: 1,
@@ -671,6 +673,20 @@ function initWorksSection() {
   const navPipsContainer = document.getElementById("nav-pips");
 
   const playBtn = document.getElementById("play-overlay");
+
+  function getProjectThumbnail(work) {
+    const videoId = projectVideos[work.videoKey];
+    return videoId
+      ? `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/maxresdefault.jpg?v=${youtubeThumbnailVersion}`
+      : work.poster;
+  }
+
+  function getProjectThumbnailFallback(work) {
+    const videoId = projectVideos[work.videoKey];
+    return videoId
+      ? `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/hqdefault.jpg?v=${youtubeThumbnailVersion}`
+      : work.poster;
+  }
 
   function showVideoFallback(message) {
     videoEl.innerHTML = `<span class="video-fallback-message">${message}</span>`;
@@ -779,17 +795,21 @@ function initWorksSection() {
     if (work.videoKey) {
       videoEl.style.display = 'block';
       videoEl.classList.remove("has-fallback");
-      videoEl.style.backgroundImage = `url("${work.poster}")`;
+      videoEl.style.backgroundImage = `url("${getProjectThumbnail(work)}")`;
       videoEl.style.backgroundSize = "cover";
       videoEl.style.backgroundPosition = "center";
       videoEl.replaceChildren();
       fallbackImg.style.display = 'none';
+      fallbackImg.onerror = () => {
+        videoEl.style.backgroundImage = `url("${getProjectThumbnailFallback(work)}")`;
+      };
+      fallbackImg.src = getProjectThumbnail(work);
       playBtn.style.display = 'flex';
     } else {
       videoEl.style.display = 'none';
       playBtn.style.display = 'none';
       fallbackImg.style.display = 'block';
-      fallbackImg.src = work.poster;
+      fallbackImg.src = getProjectThumbnail(work);
     }
 
     // Populate Tech Badges

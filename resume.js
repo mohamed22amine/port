@@ -1,5 +1,24 @@
 const pdfButton = document.getElementById("save-pdf-btn");
 const printButton = document.getElementById("print-resume-btn");
+const transitionOverlay = document.querySelector(".page-transition-overlay");
+
+if (transitionOverlay) {
+  requestAnimationFrame(() => document.body.classList.add("page-transition-ready"));
+
+  const backLink = document.querySelector('a[href="index.html"]');
+  if (backLink) {
+    backLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (document.body.classList.contains("page-transitioning")) return;
+
+      document.body.classList.remove("page-transition-ready");
+      document.body.classList.add("page-transitioning");
+      window.setTimeout(() => {
+        window.location.href = backLink.href;
+      }, 420);
+    });
+  }
+}
 
 if (printButton) {
   printButton.addEventListener("click", () => window.print());

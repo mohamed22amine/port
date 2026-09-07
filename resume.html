@@ -56,6 +56,30 @@
       border-radius: 6px;
     }
 
+    .page-transition-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: #04060a;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.page-transitioning .page-transition-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    body.page-transition-ready .page-transition-overlay {
+      animation: page-transition-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes page-transition-reveal {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
     @page {
       size: A4 portrait;
       margin: 0; /* Suppresses browser URL, title, date, and page numbers */
@@ -512,6 +536,7 @@
 </head>
 
 <body>
+  <div class="page-transition-overlay" aria-hidden="true"></div>
   <!-- Back to Portfolio -->
   <a href="index.html" class="back-link no-print" aria-label="Back to portfolio">
     <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">

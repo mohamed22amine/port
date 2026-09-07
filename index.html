@@ -8,16 +8,18 @@
   <meta name="description" content="Portfolio of AMINE, software engineer." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; connect-src 'self'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self'; upgrade-insecure-requests" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 
 <body>
+  <div class="page-transition-overlay" aria-hidden="true"></div>
   <!-- Cinematic Intro Loader -->
   <div id="site-loader" class="site-loader">
     <div class="loader-content">
@@ -127,7 +129,7 @@
             <span>LET'S TALK</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="resume.html" target="_blank" rel="noopener noreferrer" class="mobile-btn-resume">
+          <a href="resume.html" class="mobile-btn-resume">
             <span>VIEW RESUME</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           </a>
@@ -175,7 +177,7 @@
                 stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </a>
-          <a href="resume.html" target="_blank" rel="noopener noreferrer" class="btn-amber secondary-cta">
+          <a href="resume.html" class="btn-amber secondary-cta">
             <span>VIEW RESUME</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -556,7 +558,6 @@
               <span class="acc-title">System Diagnostics Quality</span>
               <span class="acc-count">Excellent Rating</span>
             </li>
-            <li>
               <span class="acc-title">Defect Reporting &amp; QC KPI</span>
               <span class="acc-count">98% Satisfied</span>
             </li>
@@ -684,18 +685,11 @@
                 <span class="demo-live-badge"><span class="pulse-dot-blue"></span> MP4 DEMO</span>
               </div>
               <div class="video-wrapper">
-                <video id="featured-video" preload="metadata" playsinline loop muted controlslist="nodownload noremoteplayback" disablepictureinpicture>
-                  <source src="" type="video/mp4">
-                </video>
+                <div id="featured-video" class="youtube-player-host" role="region" aria-label="Project video player"></div>
                 <img id="featured-image-fallback" src="" alt="Project Screenshot" class="protected-media" style="display: none;" loading="lazy" decoding="async" draggable="false">
                 <button class="play-overlay-btn" id="play-overlay" aria-label="Play Demo">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </button>
-                <button class="fullscreen-btn" id="fullscreen-btn" aria-label="Maximize video">
-                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
                   </svg>
                 </button>
               </div>

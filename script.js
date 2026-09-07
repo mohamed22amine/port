@@ -14,6 +14,8 @@ const frames = [];
 let loadedCount = 0;
 let lastRenderedIndex = -1;
 let isIntroDone = false;
+const isMobilePerformanceMode = window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+let lastMobileSectionSync = 0;
 
 // Paced intro duration (1.8 seconds)
 const MIN_LOADER_TIME = 1800;
@@ -107,8 +109,8 @@ function renderFrame(index) {
 // fonts/GSAP/CSS the page also needs; spreading the tail out keeps
 // the initial load lighter without delaying anything the user can
 // actually reach yet.
-const EAGER_FRAME_COUNT = 40;
-const IDLE_BATCH_SIZE = 6;
+const EAGER_FRAME_COUNT = isMobilePerformanceMode ? 24 : 40;
+const IDLE_BATCH_SIZE = isMobilePerformanceMode ? 3 : 6;
 
 const requestIdle =
   window.requestIdleCallback ||
@@ -196,6 +198,11 @@ function syncSequenceFromScroll() {
   const scrollProgress = clamp(scrollTop / scrollHeight, 0, 1);
 
   state.targetFrameIndex = Math.min(TOTAL_FRAMES - 1, scrollProgress * (TOTAL_FRAMES - 1));
+
+  // The frame target stays responsive on phones; active-nav geometry is less visual-critical.
+  const now = performance.now();
+  if (isMobilePerformanceMode && now - lastMobileSectionSync < 80) return;
+  lastMobileSectionSync = now;
 
   // Determine active section reliably based on viewport intersection
   const triggerPoint = window.innerHeight * 0.4;
@@ -559,6 +566,15 @@ requestAnimationFrame(tickFrameLoop);
 // ==========================================
 // SELECTED WORKS DATA (Ground truth from project READMEs)
 // ==========================================
+// Replace these values with the YouTube video IDs. Embeds are created only after Play is clicked.
+const projectVideos = {
+  pos: "kf14UYKXtdc",
+  ecommerce: "aBU8aCfKNyw",
+  yolo: "KwKuZ-Td4NE",
+  pengpu: "ZuDSu0559sg",
+  truck: "4V5OfNxsQqE"
+};
+
 const worksData = [
   {
     id: 1,
@@ -568,7 +584,7 @@ const worksData = [
     fileTitle: "POS_SYSTEM.MP4",
     year: "Academic",
     desc: "A Java Swing desktop application designed for managing supermarket product inventory, sales transactions, seller accounts, and admin controls with unified JDBC support for both zero-setup embedded SQLite and production MySQL/MariaDB.",
-    video: "first ever project  pos system.mp4",
+    videoKey: "pos",
     poster: "images/thumb_pos.jpg",
     repo: "github.com/21illusion/upermarket-Management-System-Point-of-Sale---POS-",
     repoLink: "https://github.com/21illusion/upermarket-Management-System-Point-of-Sale---POS-.git",
@@ -583,7 +599,7 @@ const worksData = [
     fileTitle: "ECOMMERCE_STORE.MP4",
     year: "License Thesis",
     desc: "A full-featured computer hardware digital marketplace built with PHP and MySQL, featuring a custom Dual-Database Adapter Pattern (translating MySQL to SQLite PDO) and a zero-configuration portable demo mode.",
-    video: "second project  e-commerce website.mp4",
+    videoKey: "ecommerce",
     poster: "images/thumb_ecommerce.jpg",
     repo: "github.com/21illusion/e-commerce",
     repoLink: "https://github.com/21illusion/e-commerce.git",
@@ -598,7 +614,7 @@ const worksData = [
     fileTitle: "YOLOV8_OPTIMIZATION.MP4",
     year: "Master Research",
     desc: "Empirical investigation of neural network architecture modifications on YOLOv8n across 5 diverse visual environments, combining multi-dataset benchmarking with NVIDIA TensorRT and Intel OpenVINO inference acceleration.",
-    video: "Third project  YOLOv8 Accuracy Improvement for Object Detection.mp4",
+    videoKey: "yolo",
     poster: "images/thumb_yolo.jpg",
     repo: "github.com/21illusion/yolov8-accuracy-improvement",
     repoLink: "https://github.com/21illusion/yolov8-accuracy-improvement.git",
@@ -613,7 +629,7 @@ const worksData = [
     fileTitle: "PENGPU_ANIMATION.MP4",
     year: "Industry",
     desc: "High-precision mechanical animation and brand motion sequence produced for SARL Peng Pu Algérie (Daewoo Trucks), showcasing heavy vehicle kinematics, component exploded views, and technical engineering assembly.",
-    video: "fourth PR -pengpu animation.mp4",
+    videoKey: "pengpu",
     poster: "images/thumb_pengpu.jpg",
     repo: null,
     repoLink: null,
@@ -628,7 +644,7 @@ const worksData = [
     fileTitle: "TRUCK_INSPECTION_PRO.MP4",
     year: "Production v2.0",
     desc: "Enterprise-grade Windows desktop application engineered for commercial transport fleets, featuring AES-256-GCM encrypted binary storage, hardware-locked licensing, ExcelJS/jsPDF reporting, and fleet predictive analytics.",
-    video: "latest project-truck inspection app.mp4",
+    videoKey: "truck",
     poster: "images/thumb_truck.jpg",
     repo: null,
     repoLink: null,
@@ -655,19 +671,40 @@ function initWorksSection() {
   const navPipsContainer = document.getElementById("nav-pips");
 
   const playBtn = document.getElementById("play-overlay");
-  const fullscreenBtn = document.getElementById("fullscreen-btn");
-  if (fullscreenBtn) {
-    fullscreenBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (videoEl.requestFullscreen) {
-        videoEl.requestFullscreen();
-      } else if (videoEl.webkitRequestFullscreen) {
-        videoEl.webkitRequestFullscreen();
-      } else if (videoEl.msRequestFullscreen) {
-        videoEl.msRequestFullscreen();
-      }
-    });
+
+  function showVideoFallback(message) {
+    videoEl.innerHTML = `<span class="video-fallback-message">${message}</span>`;
+    videoEl.classList.add("has-fallback");
+    playBtn.style.display = "none";
   }
+
+  function createYouTubeEmbed(work) {
+    const videoId = projectVideos[work.videoKey];
+    if (!videoId) {
+      showVideoFallback("Video demo coming soon.");
+      return null;
+    }
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?autoplay=1&controls=1&playsinline=1&rel=0&modestbranding=1`;
+    iframe.title = `${work.title} project video`;
+    iframe.loading = "lazy";
+    iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.addEventListener("error", () => showVideoFallback("This video is temporarily unavailable."), { once: true });
+    return iframe;
+  }
+
+  function loadYouTubeVideo(work) {
+    const iframe = createYouTubeEmbed(work);
+    if (!iframe) return;
+    videoEl.classList.remove("has-fallback");
+    videoEl.style.backgroundImage = "none";
+    videoEl.replaceChildren(iframe);
+    playBtn.style.display = "none";
+  }
+
   if (!listContainer) return;
 
   // Render navigation pips
@@ -739,14 +776,15 @@ function initWorksSection() {
     titleEl.textContent = work.title;
     descEl.textContent = work.desc;
 
-    if (work.video) {
+    if (work.videoKey) {
       videoEl.style.display = 'block';
+      videoEl.classList.remove("has-fallback");
+      videoEl.style.backgroundImage = `url("${work.poster}")`;
+      videoEl.style.backgroundSize = "cover";
+      videoEl.style.backgroundPosition = "center";
+      videoEl.replaceChildren();
       fallbackImg.style.display = 'none';
       playBtn.style.display = 'flex';
-      videoEl.querySelector('source').src = work.video;
-      videoEl.poster = work.poster;
-      videoEl.load();
-      videoEl.pause();
     } else {
       videoEl.style.display = 'none';
       playBtn.style.display = 'none';
@@ -823,18 +861,7 @@ function initWorksSection() {
   });
 
   // Video Play overlay
-  playBtn.addEventListener("click", () => {
-    videoEl.play();
-    playBtn.style.display = "none";
-  });
-  videoEl.addEventListener("pause", () => {
-    playBtn.style.display = "flex";
-  });
-  videoEl.addEventListener("click", () => {
-    if (!videoEl.paused) {
-      videoEl.pause();
-    }
-  });
+  playBtn.addEventListener("click", () => loadYouTubeVideo(worksData[currentIndex]));
 }
 
 // Email Copy & Interactive Feedback System
@@ -1136,12 +1163,33 @@ function initMobileNavigation() {
   });
 }
 
+function initPageTransitions() {
+  const overlay = document.querySelector(".page-transition-overlay");
+  if (!overlay) return;
+
+  requestAnimationFrame(() => document.body.classList.add("page-transition-ready"));
+
+  document.querySelectorAll('a[href="resume.html"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (document.body.classList.contains("page-transitioning")) return;
+
+      document.body.classList.remove("page-transition-ready");
+      document.body.classList.add("page-transitioning");
+      window.setTimeout(() => {
+        window.location.href = link.href;
+      }, 420);
+    });
+  });
+}
+
 // Ensure init is called
 document.addEventListener("DOMContentLoaded", () => {
   initWorksSection();
   initEmailActions();
   initRecommendationModal();
   initMobileNavigation();
+  initPageTransitions();
 });
 
 // Also run immediately if DOM is already ready
@@ -1150,5 +1198,6 @@ if (document.readyState === "complete" || document.readyState === "interactive")
   initEmailActions();
   initRecommendationModal();
   initMobileNavigation();
+  initPageTransitions();
 }
 
